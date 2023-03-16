@@ -1,0 +1,69 @@
+{
+  "name": "nuxt-chatgpt",
+  "version": "0.1.0",
+  "description": "ChatGPT integration for Nuxt 3",
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://vuemadness.com.com/nuxt-chatgpt",
+  "bugs": {
+    "url": "https://github.com/schnapsterdog/nuxt-chatgpt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schnapsterdog/nuxt-chatgpt"
+  },
+  "contributors": [
+    {
+      "name": "Oliver Trajceski (@schnapsterdog)"
+    }
+  ],
+  "author": {
+    "name": "Oliver Trajceski",
+    "email": "oliver@akrinum.com"
+  },
+  "keywords": [
+    "vue3",
+    "nuxt3",
+    "nuxt",
+    "nuxt.js",
+    "nuxt-chatgpt"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:generate": "nuxi generate playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "dev:preview": "nuxi preview playground",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.2.3",
+    "openai": "^3.2.1"
+  },
+  "devDependencies": {
+    "@nuxt/eslint-config": "^0.1.1",
+    "@nuxt/module-builder": "^0.2.1",
+    "@nuxt/schema": "^3.2.3",
+    "@nuxt/test-utils": "^3.2.3",
+    "changelogen": "^0.5.1",
+    "eslint": "^8.36.0",
+    "nuxt": "^3.2.3",
+    "vitest": "^0.29.2"
+  }
+}
