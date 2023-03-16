@@ -56,9 +56,9 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Add server handler
     addServerHandler({
-      route: '/api/chatgpt',
+      route: '/api/openai',
       method: 'post',
-      handler: resolve(runtimeDir, 'server/api/chatgpt'),
+      handler: resolve(runtimeDir, 'server/api/openai'),
     })
 
     nuxt.options.build.transpile.push(runtimeDir)

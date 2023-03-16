@@ -1,24 +1,16 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Downloads][downloads-shield]][downloads-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
 <!-- PROJECT LOGO -->
 <br />
 <div>
   <h1>Nuxt Chatgpt</h3>
-  
   <img src="images/chatgpt-logo.png" alt="Logo">
 
-  > [ChatGPT](https://openai.com/) integration for [Nuxt 3](https://nuxt.com). 
-  <p align="center">
-    <br />
-    <a href="https://github.com/schnapsterdog/nuxt-chatgpt/issues target="_blank"">Report Bug</a>
-    ·
-    <a href="https://github.com/schnapsterdog/nuxt-chatgpt/issues target="_blank"">Request Feature</a>
-  </p>
+  > [ChatGPT](https://openai.com/) integration for [Nuxt 3](https://nuxt.com).
+
+  [![npm version][npm-version-src]][npm-version-href]
+  [![npm downloads][npm-downloads-src]][npm-downloads-href]
+  [![License][license-src]][license-href]
 </div>
+<br />
 
 ## About the module
 
@@ -180,3 +172,10 @@ Use this space to list resources you find helpful and would like to give credit 
 [linkedin-url]: https://mk.linkedin.com/in/oliver-trajceski-8a28b070
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://vuejs.org/
+
+[npm-version-src]: https://img.shields.io/npm/v/nuxt-chatgpt/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-version-href]: https://npmjs.com/package/nuxt-chatgpt
+[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-chatgpt.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-downloads-href]: https://npmjs.com/package/nuxt-chatgpt
+[license-src]: https://img.shields.io/npm/l/nuxt-chatgpt.svg?style=flat&colorA=18181B&colorB=28CF8D
+[license-href]: https://npmjs.com/package/nuxt-chatgpt
