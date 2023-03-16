@@ -1,13 +1,13 @@
 import { createError } from 'h3'
 import { Configuration, OpenAIApi } from "openai";
 
-const config = useRuntimeConfig()
+import { useRuntimeConfig } from '#imports'
 
 export default defineEventHandler(async (event) => {
   const { prompt } = await readBody(event)
   
   const configuration = new Configuration({
-    apiKey: config.public.chatgpt.apiKey
+    apiKey: useRuntimeConfig().public.chatgpt.apiKey
   });
 
   const openai = new OpenAIApi(configuration);
