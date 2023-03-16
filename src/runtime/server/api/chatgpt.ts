@@ -1,4 +1,4 @@
-import { createError, defineEventHandler } from 'h3'
+import { createError, defineEventHandler, readBody } from 'h3'
 import { Configuration, OpenAIApi } from "openai";
 
 import { useRuntimeConfig } from '#imports'
