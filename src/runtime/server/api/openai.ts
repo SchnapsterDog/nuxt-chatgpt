@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   const { prompt } = await readBody(event)
   
   const configuration = new Configuration({
-    apiKey: useRuntimeConfig().public.chatgpt.apiKey
+    apiKey: useRuntimeConfig().chatgpt.apiKey
   });
 
   const openai = new OpenAIApi(configuration);

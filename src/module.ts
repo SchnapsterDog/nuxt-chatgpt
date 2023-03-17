@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'url'
 import { defineNuxtModule, addServerHandler, addImportsDir, createResolver } from '@nuxt/kit'
+import { defu } from 'defu'
 import { configKey, moduleName, nuxtVersion } from './config'
 
 // Module options TypeScript inteface definition
@@ -46,10 +47,10 @@ export default defineNuxtModule<ModuleOptions>({
       return console.warn(`[${moduleName}] module is disabled and will not be loaded.`)
     }
 
-    // Add apiKey in runtimeConfig
-    nuxt.options.runtimeConfig.public[configKey] = {
+    // Add apiKey in runtimeConfig - user can override at runtime with NUXT_CHATGPT_API_KEY
+    nuxt.options.runtimeConfig[configKey] = defu(nuxt.options.runtimeConfig[configKey], {
       apiKey: options.apiKey,
-    }
+    })
 
     // Add composables
     addImportsDir(resolve('./runtime/composables'))
