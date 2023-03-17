@@ -1,5 +1,4 @@
 import { createError } from 'h3'
-import { getBody, getHeaders } from "../utils"
 import type { IChatgptClient, IMessage } from "../types"
 
 export const useChatgpt = (): IChatgptClient => {
@@ -9,8 +8,7 @@ export const useChatgpt = (): IChatgptClient => {
     try {
       return await $fetch('/api/openai', {
         method: 'POST',
-        headers: getHeaders(),
-        body: getBody(message)
+        body: message
       })
     } catch (error) {
       throw createError({
