@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v0.1.7
+
+
+### 🚀 Enhancements
+
+  - Added Changelog.md file (cd473d5)
+  - Added defu packages (94f3852)
+
+### 🩹 Fixes
+
+  - Do not expose api key to client (0f9cb2c)
+  - Use native `$fetch` json behaviour (d68abfb)
+
+### ❤️  Contributors
+
+- SchnapsterDog <olivertrajceski@yahoo.com>
+- Danielroe <daniel@roe.dev>
+
 ## v0.1.6
 
 
