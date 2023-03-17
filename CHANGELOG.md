@@ -1,6 +1,17 @@
 # Changelog
 
 
+## v0.1.8
+
+
+### 🩹 Fixes
+
+  - Removed unnecessary interface (102fcb2)
+
+### ❤️  Contributors
+
+- SchnapsterDog <olivertrajceski@yahoo.com>
+
 ## v0.1.7
 
 
