@@ -1,7 +1,3 @@
-export interface IHeaders {
-  [key: string]: string;
-}
-
 export interface IChatgptClient {
   send ( IMessage ) : Promise
 }
