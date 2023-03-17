@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     throw createError({
       statusCode: 500,
-      message: 'Failed to forward request to ChatGPT API',
+      message: 'Failed to forward request to OpenAI API',
     })
   }
 })

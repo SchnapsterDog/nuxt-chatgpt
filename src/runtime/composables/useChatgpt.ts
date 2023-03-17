@@ -7,7 +7,7 @@ export const useChatgpt = (): IChatgptClient => {
   const send = async (message: IMessage) => {
 
     try {
-      return await $fetch('/api/chatgpt', {
+      return await $fetch('/api/openai', {
         method: 'POST',
         headers: getHeaders(),
         body: getBody(message)
