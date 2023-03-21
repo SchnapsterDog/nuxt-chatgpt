@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.1.9
+
+
+### 🩹 Fixes
+
+  - Removed body destructuring from openai.ts (e5af2f7)
+
+### 🏡 Chore
+
+  - Release new version (59e5352)
+
+### ❤️  Contributors
+
+- SchnapsterDog <olivertrajceski@yahoo.com>
+- AbdelH2O
+
 ## v0.1.8
 
 
