@@ -4,8 +4,8 @@ import { Configuration, OpenAIApi } from "openai";
 import { useRuntimeConfig } from '#imports'
 
 export default defineEventHandler(async (event) => {
-  const { prompt } = await readBody(event)
-  
+  const prompt = await readBody(event)
+
   const configuration = new Configuration({
     apiKey: useRuntimeConfig().chatgpt.apiKey
   });
