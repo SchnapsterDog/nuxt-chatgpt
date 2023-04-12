@@ -26,9 +26,8 @@ export default defineEventHandler(async (event) => {
   const openai = new OpenAIApi(configuration);
 
   /**
-   * Create request options based on the model
-   * @default 
-   * @description 
+   * Create request options object
+   * @description if the model is not defined by the user it will be used the default one - gpt-3.5-turbo
   */
   const requestOptions = {
     messages: [{ role: 'user', content: message }],
@@ -37,9 +36,6 @@ export default defineEventHandler(async (event) => {
   }
 
   /**
-   * Sending the request to openai API based on the model 
-   * ### text-davinci-003 model is using createCompletion() function
-   * ### gpt-3.5-turbo model is using createChatCompletion() function
    * @return response
   */
   try {

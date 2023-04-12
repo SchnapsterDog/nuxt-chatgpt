@@ -25,8 +25,7 @@ export default defineEventHandler(async (event) => {
   const openai = new OpenAIApi(configuration);
 
   /**
-   * Create request options based on the model
-   * @default modelMap.default - text-davinci-003
+   * Create request options object
    * @description if the model is not defined by the user it will be used the default one - text-davinci-003
   */
   const requestOptions = {
