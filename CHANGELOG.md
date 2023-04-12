@@ -2,6 +2,30 @@
 # Changelog
 
 
+## v0.1.10
+
+
+### 🚀 Enhancements
+
+  - Created models constants, created new routes for chat/chat-completions, added model-map, adjusted composable useChatgpt (085d66d)
+
+### 🔥 Performance
+
+  - Created constants folder, added defaultOptions for api request (def9dbc)
+
+### 📖 Documentation
+
+  - Added comments to the api/chat, api/chat-completion routes (dcc0f47)
+  - Updated Readme.md file (740436b)
+
+### 🏡 Chore
+
+  - **release:** V0.1.9 (e3a30fc)
+
+### ❤️  Contributors
+
+- SchnapsterDog <olivertrajceski@yahoo.com>
+
 ## v0.1.9
 
 

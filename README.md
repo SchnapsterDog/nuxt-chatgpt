@@ -14,13 +14,13 @@
 
 ## About the module
 
-This user-friendly module boasts of an easy integration process that enables seamless implementation into any [Nuxt 3](https://nuxt.com) project. With type-safe integration, you can integrate [ChatGPT](https://openai.com/) into your [Nuxt 3](https://nuxt.com) project without breaking a <b>sweat</b>. Enjoy easy access to the `send` method through the `useChatgpt()` composable. Additionally, the module guarantees <b><i>security</i></b> as requests are routed through a [Nitro Server](https://nuxt.com/docs/guide/concepts/server-engine), thus preventing the exposure of your <b>API Key</b>.
+This user-friendly module boasts of an easy integration process that enables seamless implementation into any [Nuxt 3](https://nuxt.com) project. With type-safe integration, you can integrate [ChatGPT](https://openai.com/) into your [Nuxt 3](https://nuxt.com) project without breaking a <b>sweat</b>. Enjoy easy access to the `chat`, and `chatCompletion` methods through the `useChatgpt()` composable. Additionally, the module guarantees <b><i>security</i></b> as requests are routed through a [Nitro Server](https://nuxt.com/docs/guide/concepts/server-engine), thus preventing the exposure of your <b>API Key</b>.
 
 ## Features
 
 - 💪 &nbsp; Easy implementation into any [Nuxt 3](https://nuxt.com) project.
 - 👉 &nbsp; Type-safe integration of Chatgpt into your [Nuxt 3](https://nuxt.com) project.
-- 🕹️ &nbsp; Provides a `useChatgpt()` composable that grants easy access to the `send` method.
+- 🕹️ &nbsp; Provides a `useChatgpt()` composable that grants easy access to the `chat`, and `chatCompletion` methods.
 - 🔥 &nbsp; Ensures security by routing requests through a [Nitro Server](https://nuxt.com/docs/guide/concepts/server-engine), preventing the <b>API Key</b> from being exposed.
 - 🧱 &nbsp; It is lightweight and performs well.
 
@@ -53,21 +53,45 @@ export default defineNuxtConfig({
 ```
 That's it! You can now use Nuxt Chatgpt in your Nuxt app 🔥
 
-## Example & Usage
+## Usage & Examples
 
-To access the `send` method in the nuxt-chatgpt module, you can use the `useChatgpt()` composable, which provides easy access to the method. The send method requires two parameters:
+To access the `chat`, and `chatCompletion` methods in the nuxt-chatgpt module, you can use the `useChatgpt()` composable, which provides easy access to them. The `chat`, and `chatCompletion` methods requires three parameters:
 
-- `message`: a string representing the text message that you want to send to the GPT-3 model for processing.
-- `options`: an optional object that specifies any additional options you want to pass to the API request, such as the GPT-3 model ID, the number of responses to generate, and the maximum length of each response.
+
+| Name | Type | Default | Description |
+|--|--|--|--|
+|**message**|`String`||A string representing the text message that you want to send to the GPT model for processing.
+|**model**|`String`|`text-davinci-003` for `chat()` and `gpt-3.5-turbo` for `chatCompletion()`|Represent certain model for different types of natural language processing tasks.
+|**options**|`Object`|`{ temperature: 0.5, max_tokens: 2048, top_p: 1 frequency_penalty: 0, presence_penalty: 0 }`|An optional object that specifies any additional options you want to pass to the API request, such as the number of responses to generate, and the maximum length of each response.
+
+Available models for `chat`
+
+- text-davinci-003
+- text-davinci-002
+
+Available models for `chatCompletion`
+
+- gpt-3.5-turbo
+- gpt-3.5-turbo-0301
+
+You need to join waitlist to use gpt-4 models within `chatCompletion` method
+
+- gpt-4
+- gpt-4-0314
+- gpt-4-32k
+- gpt-4-32k-0314
+
+### Simple `chat` usage 
+In the following example, the model is unspecified, and the text-davinci-003 model will be used by default.
 
 ```js
-const { send } = useChatgpt()
+const { chat } = useChatgpt()
 
 const data = ref('')
 const message = ref('')
 
 async function sendMessage() {
-  const response = await send(message.value)
+  const response = await chat(message.value)
   data.value = response
 }
 
@@ -85,6 +109,98 @@ async function sendMessage() {
   </div>
 </template>
 ```
+
+### Usage of `chat` with different model
+
+```js
+const { chat } = useChatgpt()
+
+const data = ref('')
+const message = ref('')
+
+async function sendMessage() {
+  const response = await chat(message.value, 'text-davinci-002')
+  data.value = response
+}
+
+```
+
+```html
+<template>
+  <div>
+    <input v-model="message">
+    <button
+      @click="sendMessage"
+      v-text="'Send'"
+    />
+    <div>{{ data }}</div>
+  </div>
+</template>
+```
+
+### Simple `chatCompletion` usage 
+In the following example, the model is unspecified, and the gpt-3.5-turbo model will be used by default.
+
+```js
+const { chatCompletion } = useChatgpt()
+
+const data = ref('')
+const message = ref('')
+
+async function sendMessage() {
+  const response = await chatCompletion(message.value)
+  data.value = response
+}
+
+```
+
+```html
+<template>
+  <div>
+    <input v-model="message">
+    <button
+      @click="sendMessage"
+      v-text="'Send'"
+    />
+    <div>{{ data }}</div>
+  </div>
+</template>
+```
+
+### Usage of `chatCompletion` with different model
+
+```js
+const { chatCompletion } = useChatgpt()
+
+const data = ref('')
+const message = ref('')
+
+async function sendMessage() {
+  const response = await chatCompletion(message.value, 'gpt-3.5-turbo-0301')
+  data.value = response
+}
+
+```
+
+```html
+<template>
+  <div>
+    <input v-model="message">
+    <button
+      @click="sendMessage"
+      v-text="'Send'"
+    />
+    <div>{{ data }}</div>
+  </div>
+</template>
+```
+
+## chat vs chatCompletion
+
+The `chat` method allows the user to send a prompt to the OpenAI API and receive a response. You can use this endpoint to build conversational interfaces that can interact with users in a natural way. For example, you could use the chat method to build a chatbot that can answer customer service questions or provide information about a product or service.
+
+The `chatCompletion` method is similar to the `chat` method, but it provides additional functionality for generating longer, more complex responses. Specifically, the chatCompletion method allows you to provide a conversation history as input, which the API can use to generate a response that is consistent with the context of the conversation. This makes it possible to build chatbots that can engage in longer, more natural conversations with users.
+
 
 ## Module Options
 
