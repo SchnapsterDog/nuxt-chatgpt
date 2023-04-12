@@ -56,11 +56,21 @@ export default defineNuxtModule<ModuleOptions>({
     addImportsDir(resolve('./runtime/composables'))
 
     // Add server handler
-    addServerHandler({
-      route: '/api/openai',
-      method: 'post',
-      handler: resolve(runtimeDir, 'server/api/openai'),
-    })
+    addServerHandler(
+      {
+        route: '/api/chat',
+        method: 'post',
+        handler: resolve(runtimeDir, 'server/api/chat'),
+      }
+    )
+
+    addServerHandler(
+      {
+        route: '/api/chat-completion',
+        method: 'post',
+        handler: resolve(runtimeDir, 'server/api/chat-completion'),
+      }
+    )
 
     nuxt.options.build.transpile.push(runtimeDir)
   }

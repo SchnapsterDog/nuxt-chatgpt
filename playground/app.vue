@@ -13,13 +13,17 @@
 import { useChatgpt } from "#imports"
 import { ref } from "vue"
 
-const { send } = useChatgpt()
+const { chatCompletion } = useChatgpt()
 
 const data = ref('')
 const inputData = ref('')
 
 async function sendMessage() {
-  const response = await send(inputData.value)
-  data.value = response
+  try {
+    const response = await chatCompletion(inputData.value, 'gpt-3.5-turbo')
+    data.value = response
+  } catch(error) {
+    alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
+  }
 }
 </script>
