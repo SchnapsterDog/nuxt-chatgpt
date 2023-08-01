@@ -13,6 +13,13 @@ export interface ModuleOptions {
   apiKey?: string
 
   /**
+   * Set chatGPT basePath
+   * @default https://api.openai.com/v1
+   * @description Set your chatGPT basePath
+  */
+  basePath?: string
+
+  /**
    * Setting to `false` disables the module.
    * @default true
    * @description Use this setting to disable the module.
@@ -47,9 +54,10 @@ export default defineNuxtModule<ModuleOptions>({
       return console.warn(`[${moduleName}] module is disabled and will not be loaded.`)
     }
 
-    // Add apiKey in runtimeConfig - user can override at runtime with NUXT_CHATGPT_API_KEY
+    // Add apiKey and basePath in runtimeConfig - user can override at runtime with NUXT_CHATGPT_API_KEY, NUXT_CHATGPT_BASE_PATH
     nuxt.options.runtimeConfig[configKey] = defu(nuxt.options.runtimeConfig[configKey], {
       apiKey: options.apiKey,
+      basePath: options.basePath,
     })
 
     // Add composables

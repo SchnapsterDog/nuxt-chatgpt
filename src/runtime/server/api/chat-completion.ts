@@ -19,7 +19,8 @@ export default defineEventHandler(async (event) => {
 
   // set-up configuration object and apiKEY
   const configuration = new Configuration({
-    apiKey: useRuntimeConfig().chatgpt.apiKey
+    apiKey: useRuntimeConfig().chatgpt.apiKey,
+    basePath: useRuntimeConfig().chatgpt.basePath,
   });
 
   // init new instance of openai and pass configuration into it
