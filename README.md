@@ -47,7 +47,8 @@ export default defineNuxtConfig({
 
   // entirely optional
   chatgpt: {
-    apiKey: 'Your apiKey here goes here'
+    apiKey: 'Your apiKey here goes here',
+    basePath: 'Your bashPath here goes here',
   },
 })
 ```
@@ -207,6 +208,7 @@ The `chatCompletion` method is similar to the `chat` method, but it provides add
 | Name | Type | Default | Description |
 |--|--|--|--|
 |**apiKey**|`String`|`xxxxxx`|Your apiKey here goes here
+|**basePath**|`String`|`https://api.openai.com/v1`|Your basePath here goes here
 |**isEnabled**|`Boolean`|`true`| Enable or disable the module. `True` by default.
 
 <!-- CONTRIBUTING -->
