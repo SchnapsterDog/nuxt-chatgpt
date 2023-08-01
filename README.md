@@ -48,7 +48,7 @@ export default defineNuxtConfig({
   // entirely optional
   chatgpt: {
     apiKey: 'Your apiKey here goes here',
-    basePath: 'Your bashPath here goes here', // optional
+    basePath: 'Your bashPath here goes here',
   },
 })
 ```
