@@ -1,5 +1,5 @@
+import OpenAI from 'openai'
 import { createError, defineEventHandler, readBody } from "h3"
-import { Configuration, OpenAIApi } from "openai"
 import { defaultOptions } from "../../constants/options"
 import { MODEL_GPT_TURBO_3_5 } from '../../constants/models'
 import { modelMap } from "../../utils/model-map"
@@ -18,12 +18,9 @@ export default defineEventHandler(async (event) => {
   }
 
   // set-up configuration object and apiKEY
-  const configuration = new Configuration({
+  const openai = new OpenAI({
     apiKey: useRuntimeConfig().chatgpt.apiKey
   });
-
-  // init new instance of openai and pass configuration into it
-  const openai = new OpenAIApi(configuration);
 
   /**
    * Create request options object
@@ -39,8 +36,8 @@ export default defineEventHandler(async (event) => {
    * @return response
   */
   try {
-    const { data } = await openai.createChatCompletion(requestOptions)
-    return (data.choices[0] as { message: { content: string } }).message?.content
+    const chatCompletion = await openai.chat.completions.create(requestOptions)
+    return (chatCompletion.choices[0] as { message: { content: string } }).message?.content
   } catch (error) {
     throw createError({
       statusCode: 500,

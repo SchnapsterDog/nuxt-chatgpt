@@ -14,7 +14,7 @@
 
 ## About the module
 
-This user-friendly module boasts of an easy integration process that enables seamless implementation into any [Nuxt 3](https://nuxt.com) project. With type-safe integration, you can integrate [ChatGPT](https://openai.com/) into your [Nuxt 3](https://nuxt.com) project without breaking a <b>sweat</b>. Enjoy easy access to the `chat`, and `chatCompletion` methods through the `useChatgpt()` composable. Additionally, the module guarantees <b><i>security</i></b> as requests are routed through a [Nitro Server](https://nuxt.com/docs/guide/concepts/server-engine), thus preventing the exposure of your <b>API Key</b>.
+This user-friendly module boasts of an easy integration process that enables seamless implementation into any [Nuxt 3](https://nuxt.com) project. With type-safe integration, you can integrate [ChatGPT](https://openai.com/) into your [Nuxt 3](https://nuxt.com) project without breaking a <b>sweat</b>. Enjoy easy access to the `chat`, and `chatCompletion` methods through the `useChatgpt()` composable. Additionally, the module guarantees <b><i>security</i></b> as requests are routed through a [Nitro Server](https://nuxt.com/docs/guide/concepts/server-engine), thus preventing the exposure of your <b>API Key</b>. The module use [openai](https://github.com/openai/openai-node) library version 4.0.0 behind the scene.
 
 ## Features
 

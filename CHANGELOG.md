@@ -1,6 +1,23 @@
 
 # Changelog
 
+## v0.2.1
+
+### 📖 Documentation
+
+  - Udpated CHANGELOG.md file (f40671c)
+
+### 📦 Build
+
+  - Updated openai library to v@4.0.0, adjusted API calls (f36392f)
+
+### 🏡 Chore
+
+  - **release:** V0.2.1 (e3a30fc)
+
+### ❤️  Contributors
+
+- SchnapsterDog <olivertrajceski@yahoo.com>
 
 ## v0.1.10
 
