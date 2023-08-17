@@ -1,13 +1,7 @@
 
 # Changelog
 
-
 ## v0.2.1
-
-
-### 🩹 Fixes
-
-  - Merging conflicts (18529d3)
 
 ### 📖 Documentation
 
@@ -19,7 +13,7 @@
 
 ### 🏡 Chore
 
-  - **release:** V0.1.9 (e3a30fc)
+  - **release:** V0.2.1 (e3a30fc)
 
 ### ❤️  Contributors
 
