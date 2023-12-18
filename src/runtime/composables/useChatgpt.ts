@@ -1,5 +1,5 @@
 import { createError } from 'h3'
-import type { IChatgptClient, IMessage, IModel, IOptions } from "../types"
+import type { IChatgptClient, ISystem, IMessage, IModel, IOptions } from "../types"
 
 export const useChatgpt = (): IChatgptClient => {
 
@@ -22,13 +22,14 @@ export const useChatgpt = (): IChatgptClient => {
     }
   }
 
-  const chatCompletion = async (message: IMessage, model?: IModel, options?: IOptions) => {
+  const chatCompletion = async (message: IMessage, system?: ISystem, model?: IModel, options?: IOptions) => {
 
     try {
       return await $fetch('/api/chat-completion', {
         method: 'POST',
         body: {
           message,
+          system,
           model,
           options
         }

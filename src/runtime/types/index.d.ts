@@ -3,6 +3,10 @@ export interface IChatgptClient {
   chatCompletion(IMessage): Promise
 }
 
+export interface ISystem {
+  system: string
+}
+
 export interface IMessage {
   message: string
 }

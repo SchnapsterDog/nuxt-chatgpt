@@ -7,7 +7,7 @@ import { useRuntimeConfig } from '#imports'
 
 export default defineEventHandler(async (event) => {
   // destructing the data that comes from the request
-  const { message, model, options } = await readBody(event)
+  const { message, system, model, options } = await readBody(event)
 
   // throw an error if the apiKey is not set
   if (!useRuntimeConfig().chatgpt.apiKey) {
@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
    * @description if the model is not defined by the user it will be used the default one - gpt-3.5-turbo
   */
   const requestOptions = {
-    messages: [{ role: 'user', content: message }],
+    messages: [{ role: 'system', content: system }, { role: 'user', content: message }],
     model: !model ? modelMap[MODEL_GPT_TURBO_3_5] : modelMap[model],
     ...(options || defaultOptions)
   }
