@@ -4,13 +4,18 @@
   <h1>Nuxt Chatgpt</h3>
   <img src="images/chatgpt-logo.png" alt="Logo">
 
-  > [ChatGPT](https://openai.com/) integration for [Nuxt 3](https://nuxt.com).
+> [ChatGPT](https://openai.com/) integration for [Nuxt 3](https://nuxt.com).
 
-  [![npm version][npm-version-src]][npm-version-href]
-  [![npm downloads][npm-downloads-src]][npm-downloads-href]
-  [![License][license-src]][license-href]
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![License][license-src]][license-href]
+
 </div>
 <br />
+
+# Disclaimer
+
+This module has been developed by Oliver Trajceski originally, I have only added gpt 4 turbo modules and system message options. I need to use this version in a project and, shamefully, I could not manage to install this from my branch I published it here. I will remove this as soon as I can install it from my branch.
 
 ## About the module
 
@@ -27,18 +32,20 @@ This user-friendly module boasts of an easy integration process that enables sea
 ## Getting Started
 
 1. Add nuxt-chatgpt dependency to your project
-* npm
+
+- npm
   ```sh
   npm install --save-dev nuxt-chatgpt
   ```
-* pnpm
+- pnpm
   ```sh
   pnpm add -D nuxt-chatgpt
   ```
-* yarn
+- yarn
   ```sh
   yarn add --dev nuxt-chatgpt
   ```
+
 2. Add nuxt-chatgpt to the modules section of nuxt.config.ts
 
 ```js
@@ -47,22 +54,22 @@ export default defineNuxtConfig({
 
   // entirely optional
   chatgpt: {
-    apiKey: 'Your apiKey here goes here'
+    apiKey: "Your apiKey here goes here",
   },
-})
+});
 ```
+
 That's it! You can now use Nuxt Chatgpt in your Nuxt app 🔥
 
 ## Usage & Examples
 
 To access the `chat`, and `chatCompletion` methods in the nuxt-chatgpt module, you can use the `useChatgpt()` composable, which provides easy access to them. The `chat`, and `chatCompletion` methods requires three parameters:
 
-
-| Name | Type | Default | Description |
-|--|--|--|--|
-|**message**|`String`||A string representing the text message that you want to send to the GPT model for processing.
-|**model**|`String`|`text-davinci-003` for `chat()` and `gpt-3.5-turbo` for `chatCompletion()`|Represent certain model for different types of natural language processing tasks.
-|**options**|`Object`|`{ temperature: 0.5, max_tokens: 2048, top_p: 1 frequency_penalty: 0, presence_penalty: 0 }`|An optional object that specifies any additional options you want to pass to the API request, such as the number of responses to generate, and the maximum length of each response.
+| Name        | Type     | Default                                                                                      | Description                                                                                                                                                                         |
+| ----------- | -------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **message** | `String` |                                                                                              | A string representing the text message that you want to send to the GPT model for processing.                                                                                       |
+| **model**   | `String` | `text-davinci-003` for `chat()` and `gpt-3.5-turbo` for `chatCompletion()`                   | Represent certain model for different types of natural language processing tasks.                                                                                                   |
+| **options** | `Object` | `{ temperature: 0.5, max_tokens: 2048, top_p: 1 frequency_penalty: 0, presence_penalty: 0 }` | An optional object that specifies any additional options you want to pass to the API request, such as the number of responses to generate, and the maximum length of each response. |
 
 Available models for `chat`
 
@@ -81,30 +88,27 @@ You need to join waitlist to use gpt-4 models within `chatCompletion` method
 - gpt-4-32k
 - gpt-4-32k-0314
 
-### Simple `chat` usage 
+### Simple `chat` usage
+
 In the following example, the model is unspecified, and the text-davinci-003 model will be used by default.
 
 ```js
-const { chat } = useChatgpt()
+const { chat } = useChatgpt();
 
-const data = ref('')
-const message = ref('')
+const data = ref("");
+const message = ref("");
 
 async function sendMessage() {
-  const response = await chat(message.value)
-  data.value = response
+  const response = await chat(message.value);
+  data.value = response;
 }
-
 ```
 
 ```html
 <template>
   <div>
-    <input v-model="message">
-    <button
-      @click="sendMessage"
-      v-text="'Send'"
-    />
+    <input v-model="message" />
+    <button @click="sendMessage" v-text="'Send'" />
     <div>{{ data }}</div>
   </div>
 </template>
@@ -113,55 +117,48 @@ async function sendMessage() {
 ### Usage of `chat` with different model
 
 ```js
-const { chat } = useChatgpt()
+const { chat } = useChatgpt();
 
-const data = ref('')
-const message = ref('')
+const data = ref("");
+const message = ref("");
 
 async function sendMessage() {
-  const response = await chat(message.value, 'text-davinci-002')
-  data.value = response
+  const response = await chat(message.value, "text-davinci-002");
+  data.value = response;
 }
-
 ```
 
 ```html
 <template>
   <div>
-    <input v-model="message">
-    <button
-      @click="sendMessage"
-      v-text="'Send'"
-    />
+    <input v-model="message" />
+    <button @click="sendMessage" v-text="'Send'" />
     <div>{{ data }}</div>
   </div>
 </template>
 ```
 
-### Simple `chatCompletion` usage 
+### Simple `chatCompletion` usage
+
 In the following example, the model is unspecified, and the gpt-3.5-turbo model will be used by default.
 
 ```js
-const { chatCompletion } = useChatgpt()
+const { chatCompletion } = useChatgpt();
 
-const data = ref('')
-const message = ref('')
+const data = ref("");
+const message = ref("");
 
 async function sendMessage() {
-  const response = await chatCompletion(message.value)
-  data.value = response
+  const response = await chatCompletion(message.value);
+  data.value = response;
 }
-
 ```
 
 ```html
 <template>
   <div>
-    <input v-model="message">
-    <button
-      @click="sendMessage"
-      v-text="'Send'"
-    />
+    <input v-model="message" />
+    <button @click="sendMessage" v-text="'Send'" />
     <div>{{ data }}</div>
   </div>
 </template>
@@ -170,26 +167,22 @@ async function sendMessage() {
 ### Usage of `chatCompletion` with different model
 
 ```js
-const { chatCompletion } = useChatgpt()
+const { chatCompletion } = useChatgpt();
 
-const data = ref('')
-const message = ref('')
+const data = ref("");
+const message = ref("");
 
 async function sendMessage() {
-  const response = await chatCompletion(message.value, 'gpt-3.5-turbo-0301')
-  data.value = response
+  const response = await chatCompletion(message.value, "gpt-3.5-turbo-0301");
+  data.value = response;
 }
-
 ```
 
 ```html
 <template>
   <div>
-    <input v-model="message">
-    <button
-      @click="sendMessage"
-      v-text="'Send'"
-    />
+    <input v-model="message" />
+    <button @click="sendMessage" v-text="'Send'" />
     <div>{{ data }}</div>
   </div>
 </template>
@@ -201,15 +194,15 @@ The `chat` method allows the user to send a prompt to the OpenAI API and receive
 
 The `chatCompletion` method is similar to the `chat` method, but it provides additional functionality for generating longer, more complex responses. Specifically, the chatCompletion method allows you to provide a conversation history as input, which the API can use to generate a response that is consistent with the context of the conversation. This makes it possible to build chatbots that can engage in longer, more natural conversations with users.
 
-
 ## Module Options
 
-| Name | Type | Default | Description |
-|--|--|--|--|
-|**apiKey**|`String`|`xxxxxx`|Your apiKey here goes here
-|**isEnabled**|`Boolean`|`true`| Enable or disable the module. `True` by default.
+| Name          | Type      | Default  | Description                                      |
+| ------------- | --------- | -------- | ------------------------------------------------ |
+| **apiKey**    | `String`  | `xxxxxx` | Your apiKey here goes here                       |
+| **isEnabled** | `Boolean` | `true`   | Enable or disable the module. `True` by default. |
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -223,13 +216,14 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
+
 ## Contact
 
 Oliver Trajceski - [LinkedIn](https://mk.linkedin.com/in/oliver-trajceski-8a28b070) - oliver@akrinum.com
@@ -262,18 +256,19 @@ npm run test:watch
 npm run release
 ```
 
-
 <!-- ACKNOWLEDGMENTS -->
+
 ## Acknowledgments
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
+- [Choose an Open Source License](https://choosealicense.com)
+- [Img Shields](https://shields.io)
+- [GitHub Pages](https://pages.github.com)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/schnapsterdog/nuxt-chatgpt.svg?style=for-the-badge
 [contributors-url]: https://github.com/schnapsterdog/nuxt-chatgpt/graphs/contributors
 [downloads-shield]: https://img.shields.io/npm/dw/nuxt-chatgpt.svg?style=for-the-badge
@@ -288,7 +283,6 @@ Use this space to list resources you find helpful and would like to give credit 
 [linkedin-url]: https://mk.linkedin.com/in/oliver-trajceski-8a28b070
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://vuejs.org/
-
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-chatgpt/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-version-href]: https://npmjs.com/package/nuxt-chatgpt
 [npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-chatgpt.svg?style=flat&colorA=18181B&colorB=28CF8D
