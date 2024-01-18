@@ -1,6 +1,32 @@
 
 # Changelog
 
+## v0.2.2
+
+[compare changes](https://github.com/schnapsterdog/nuxt-chatgpt/compare/v0.2.1...v0.2.2)
+
+### 🚀 Enhancements
+
+- Core changes of chat vs chatCompletion methods, chatCompletion now serve as Socratic Tutors and can be sent set of messages, added new models, updated model-map, updated Readme.md file ([d3c6784](https://github.com/schnapsterdog/nuxt-chatgpt/commit/d3c6784))
+
+### 🩹 Fixes
+
+- Removed key from playground ([e736706](https://github.com/schnapsterdog/nuxt-chatgpt/commit/e736706))
+
+### 📖 Documentation
+
+- Updated Changelog.md file ([8bb28dd](https://github.com/schnapsterdog/nuxt-chatgpt/commit/8bb28dd))
+
+### 🏡 Chore
+
+- Test bundler module resolution ([4bce76a](https://github.com/schnapsterdog/nuxt-chatgpt/commit/4bce76a))
+
+### ❤️ Contributors
+
+- Schnapsterdog <olivertrajceski@yahoo.com>
+- Daniel Roe <daniel@roe.dev>
+- SchnapsterDog <olivertrajceski@yahoo.com>
+
 ## v0.2.1
 
 ### 📖 Documentation
