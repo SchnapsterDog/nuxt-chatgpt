@@ -60,26 +60,27 @@ To access the `chat`, and `chatCompletion` methods in the nuxt-chatgpt module, y
 
 | Name | Type | Default | Description |
 |--|--|--|--|
-|**message**|`String`||A string representing the text message that you want to send to the GPT model for processing.
+|**message**|`String`|available only for `chat()`|A string representing the text message that you want to send to the GPT model for processing.
+|**messages**|`Array`|available only for `chatCompletion()`|An array of objects that contains `role` and `content`
 |**model**|`String`|`text-davinci-003` for `chat()` and `gpt-3.5-turbo` for `chatCompletion()`|Represent certain model for different types of natural language processing tasks.
 |**options**|`Object`|`{ temperature: 0.5, max_tokens: 2048, top_p: 1 frequency_penalty: 0, presence_penalty: 0 }`|An optional object that specifies any additional options you want to pass to the API request, such as the number of responses to generate, and the maximum length of each response.
 
-Available models for `chat`
+Available models:
 
-- text-davinci-003
 - text-davinci-002
-
-Available models for `chatCompletion`
-
+- text-davinci-003
 - gpt-3.5-turbo
 - gpt-3.5-turbo-0301
-
-You need to join waitlist to use gpt-4 models within `chatCompletion` method
-
+- gpt-3.5-turbo-1106
 - gpt-4
+- gpt-4-1106-preview
 - gpt-4-0314
+- gpt-4-0613
 - gpt-4-32k
 - gpt-4-32k-0314
+- gpt-4-32k-0613
+
+You need to join waitlist to use gpt-4 models within `chatCompletion` method
 
 ### Simple `chat` usage 
 In the following example, the model is unspecified, and the text-davinci-003 model will be used by default.
@@ -88,11 +89,15 @@ In the following example, the model is unspecified, and the text-davinci-003 mod
 const { chat } = useChatgpt()
 
 const data = ref('')
-const message = ref('')
+const inputData = ref('')
 
 async function sendMessage() {
-  const response = await chat(message.value)
-  data.value = response
+  try {
+    const response = await chat(inputData.value)
+    data.value = response
+  } catch(error) {
+    alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
+  }
 }
 
 ```
@@ -100,7 +105,7 @@ async function sendMessage() {
 ```html
 <template>
   <div>
-    <input v-model="message">
+    <input v-model="inputData">
     <button
       @click="sendMessage"
       v-text="'Send'"
@@ -116,11 +121,15 @@ async function sendMessage() {
 const { chat } = useChatgpt()
 
 const data = ref('')
-const message = ref('')
+const inputData = ref('')
 
 async function sendMessage() {
-  const response = await chat(message.value, 'text-davinci-002')
-  data.value = response
+  try {
+    const response = await chat(inputData.value, 'gpt-3.5-turbo')
+    data.value = response
+  } catch(error) {
+    alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
+  }
 }
 
 ```
@@ -128,7 +137,7 @@ async function sendMessage() {
 ```html
 <template>
   <div>
-    <input v-model="message">
+    <input v-model="inputData">
     <button
       @click="sendMessage"
       v-text="'Send'"
@@ -144,12 +153,29 @@ In the following example, the model is unspecified, and the gpt-3.5-turbo model 
 ```js
 const { chatCompletion } = useChatgpt()
 
-const data = ref('')
-const message = ref('')
+const chatTree = ref([])
+const inputData = ref('')
 
 async function sendMessage() {
-  const response = await chatCompletion(message.value)
-  data.value = response
+  try {
+    const message = {
+      role: 'user',
+      content: `${inputData.value}`,
+    }
+
+    chatTree.value.push(message)
+
+    const response = await chatCompletion(chatTree.value)
+    
+    const responseMessage = {
+      role: response[0].message.role,
+      content: response[0].message.content
+    }
+    
+    chatTree.value.push(responseMessage)
+  } catch(error) {
+    alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
+  }
 }
 
 ```
@@ -157,12 +183,20 @@ async function sendMessage() {
 ```html
 <template>
   <div>
-    <input v-model="message">
+    <input v-model="inputData">
     <button
       @click="sendMessage"
       v-text="'Send'"
     />
-    <div>{{ data }}</div>
+    <div>
+      <div
+        v-for="chat in chatTree"
+        :key="chat"
+      >
+        <strong>{{ chat.role }} :</strong>
+        <div>{{ chat.content }} </div>
+      </div>
+    </div>
   </div>
 </template>
 ```
@@ -172,12 +206,29 @@ async function sendMessage() {
 ```js
 const { chatCompletion } = useChatgpt()
 
-const data = ref('')
-const message = ref('')
+const chatTree = ref([])
+const inputData = ref('')
 
 async function sendMessage() {
-  const response = await chatCompletion(message.value, 'gpt-3.5-turbo-0301')
-  data.value = response
+  try {
+    const message = {
+      role: 'user',
+      content: `${inputData.value}`,
+    }
+
+    chatTree.value.push(message)
+
+    const response = await chatCompletion(chatTree.value, 'gpt-3.5-turbo-0301')
+    
+    const responseMessage = {
+      role: response[0].message.role,
+      content: response[0].message.content
+    }
+    
+    chatTree.value.push(responseMessage)
+  } catch(error) {
+    alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
+  }
 }
 
 ```
@@ -185,12 +236,20 @@ async function sendMessage() {
 ```html
 <template>
   <div>
-    <input v-model="message">
+    <input v-model="inputData">
     <button
       @click="sendMessage"
       v-text="'Send'"
     />
-    <div>{{ data }}</div>
+    <div>
+      <div
+        v-for="chat in chatTree"
+        :key="chat"
+      >
+        <strong>{{ chat.role }} :</strong>
+        <div>{{ chat.content }} </div>
+      </div>
+    </div>
   </div>
 </template>
 ```

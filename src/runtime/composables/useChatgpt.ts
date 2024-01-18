@@ -22,13 +22,13 @@ export const useChatgpt = (): IChatgptClient => {
     }
   }
 
-  const chatCompletion = async (message: IMessage, model?: IModel, options?: IOptions) => {
+  const chatCompletion = async (messages?: [], model?: IModel, options?: IOptions) => {
 
     try {
       return await $fetch('/api/chat-completion', {
         method: 'POST',
         body: {
-          message,
+          messages,
           model,
           options
         }
