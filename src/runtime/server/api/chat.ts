@@ -1,6 +1,7 @@
 import OpenAI from 'openai'
 import { createError, defineEventHandler, readBody } from "h3"
 import { defaultOptions } from "../../constants/options"
+import { MODEL_GPT_TURBO_3_5 } from '../../constants/models'
 import { modelMap } from "../../utils/model-map"
 import { useRuntimeConfig } from '#imports'
 
@@ -23,11 +24,11 @@ export default defineEventHandler(async (event) => {
 
   /**
    * Create request options object
-   * @description if the model is not defined by the user it will be used the default one - text-davinci-003
+   * @description if the model is not defined by the user it will be used the default one - gpt-3.5-turbo
   */
   const requestOptions = {
-    prompt: message,
-    model: !model ? modelMap.default : modelMap[model],
+    messages: [{ role: 'user', content: message }],
+    model: !model ? modelMap[MODEL_GPT_TURBO_3_5] : modelMap[model],
     ...(options || defaultOptions)
   }
 
@@ -35,8 +36,8 @@ export default defineEventHandler(async (event) => {
    * @return response
   */
   try {
-    const completion = await openai.completions.create(requestOptions)
-    return (completion.choices[0] as { text: string }).text?.slice(2)
+    const chatCompletion = await openai.chat.completions.create(requestOptions)
+    return (chatCompletion.choices[0] as { message: { content: string } }).message?.content
   } catch (error) {
     throw createError({
       statusCode: 500,
