@@ -1,10 +1,10 @@
 {
   "name": "nuxt-chatgpt",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "ChatGPT integration for Nuxt 3",
   "license": "MIT",
   "type": "module",
-  "homepage": "https://vuemadness.com.com/nuxt-chatgpt",
+  "homepage": "https://vuemadness.com/nuxt-chatgpt",
   "bugs": {
     "url": "https://github.com/schnapsterdog/nuxt-chatgpt/issues"
   },

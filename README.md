@@ -293,7 +293,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Oliver Trajceski - [LinkedIn](https://mk.linkedin.com/in/oliver-trajceski-8a28b070) - oliver@akrinum.com
 
-Project Link: [https://github.com/schnapsterdog/nuxt-chatgpt](https://github.com/schnapsterdog/nuxt-chatgpt)
+Project Link: [https://vuemadness.com/vuehub/nuxt-chatgpt/](https://vuemadness.com/vuehub/nuxt-chatgpt/)
 
 ## Development
 
