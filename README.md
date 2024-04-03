@@ -29,15 +29,15 @@ This user-friendly module boasts of an easy integration process that enables sea
 1. Add nuxt-chatgpt dependency to your project
 * npm
   ```sh
-  npm install --save-dev nuxt-chatgpt
+  npx nuxi@latest module add nuxt-chatgpt
   ```
 * pnpm
   ```sh
-  pnpm add -D nuxt-chatgpt
+  npx nuxi@latest module add nuxt-chatgpt
   ```
 * yarn
   ```sh
-  yarn add --dev nuxt-chatgpt
+  npx nuxi@latest module add nuxt-chatgpt
   ```
 2. Add nuxt-chatgpt to the modules section of nuxt.config.ts
 
