@@ -71,7 +71,7 @@ To access the `chat`, and `chatCompletion` methods in the nuxt-chatgpt module, y
 |--|--|--|--|
 |**message**|`String`|available only for `chat()`|A string representing the text message that you want to send to the GPT model for processing.
 |**messages**|`Array`|available only for `chatCompletion()`|An array of objects that contains `role` and `content`
-|**model**|`String`|`text-davinci-003` for `chat()` and `gpt-3.5-turbo` for `chatCompletion()`|Represent certain model for different types of natural language processing tasks.
+|**model**|`String`|`gpt-4o-mini` for `chat()` and `gpt-4o-mini` for `chatCompletion()`|Represent certain model for different types of natural language processing tasks.
 |**options**|`Object`|`{ temperature: 0.5, max_tokens: 2048, top_p: 1 frequency_penalty: 0, presence_penalty: 0 }`|An optional object that specifies any additional options you want to pass to the API request, such as the number of responses to generate, and the maximum length of each response.
 
 Available models:
@@ -82,6 +82,9 @@ Available models:
 - gpt-3.5-turbo-0301
 - gpt-3.5-turbo-1106
 - gpt-4
+- gpt-4o
+- gpt-4o-mini
+- gpt-4-turbo
 - gpt-4-1106-preview
 - gpt-4-0314
 - gpt-4-0613
@@ -89,10 +92,8 @@ Available models:
 - gpt-4-32k-0314
 - gpt-4-32k-0613
 
-You need to join waitlist to use gpt-4 models within `chatCompletion` method
-
 ### Simple `chat` usage 
-In the following example, the model is unspecified, and the text-davinci-003 model will be used by default.
+In the following example, the model is unspecified, and the gpt-4o-mini model will be used by default.
 
 ```js
 const { chat } = useChatgpt()
@@ -134,7 +135,7 @@ const inputData = ref('')
 
 async function sendMessage() {
   try {
-    const response = await chat(inputData.value, 'gpt-3.5-turbo')
+    const response = await chat(inputData.value, 'gpt-4o-mini')
     data.value = response
   } catch(error) {
     alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
@@ -157,7 +158,7 @@ async function sendMessage() {
 ```
 
 ### Simple `chatCompletion` usage 
-In the following example, the model is unspecified, and the gpt-3.5-turbo model will be used by default.
+In the following example, the model is unspecified, and the gpt-4o-mini model will be used by default.
 
 ```js
 const { chatCompletion } = useChatgpt()
@@ -227,7 +228,7 @@ async function sendMessage() {
 
     chatTree.value.push(message)
 
-    const response = await chatCompletion(chatTree.value, 'gpt-3.5-turbo-0301')
+    const response = await chatCompletion(chatTree.value, 'gpt-4o-mini')
     
     const responseMessage = {
       role: response[0].message.role,
