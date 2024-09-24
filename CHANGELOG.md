@@ -1,6 +1,23 @@
 
 # Changelog
 
+## v0.2.4
+
+[compare changes](https://github.com/schnapsterdog/nuxt-chatgpt/compare/v0.2.3...v0.2.4)
+
+### 🚀 Enhancements
+
+- Updated gpt-4 models, changed default models ([2c5039a](https://github.com/schnapsterdog/nuxt-chatgpt/commit/2c5039a))
+
+### 📖 Documentation
+
+- Updated Readme.md file ([81d5818](https://github.com/schnapsterdog/nuxt-chatgpt/commit/81d5818))
+- Updated Readme.md file with showcase and demo ([4e19e42](https://github.com/schnapsterdog/nuxt-chatgpt/commit/4e19e42))
+
+### ❤️ Contributors
+
+- Schnapsterdog <olivertrajceski@yahoo.com>
+
 ## v0.2.3
 
 [compare changes](https://github.com/schnapsterdog/nuxt-chatgpt/compare/v0.2.2...v0.2.3)
