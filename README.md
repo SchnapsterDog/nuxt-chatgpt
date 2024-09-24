@@ -1,16 +1,25 @@
 <!-- PROJECT LOGO -->
 <br />
 <div>
-  <h1>Nuxt Chatgpt</h3>
-  <img src="images/chatgpt-logo.png" alt="Logo">
+  <div>
+  <h1>Nuxt Chatgpt <a href="https://nuxtchatgpt.com" target="_blank">🔥(VIEW DEMO)🔥</a></h3>
+  
+  </div>
+  <div style="display:flex; width:100%; justify-content:center">
+  <img src="images/logo.png" alt="Logo">
+  </div>
 
-  > [ChatGPT](https://openai.com/) integration for [Nuxt 3](https://nuxt.com).
+  > [ChatGPT](https://nuxtchatgpt.com) integration for [Nuxt 3](https://nuxt.com).
 
   [![npm version][npm-version-src]][npm-version-href]
   [![npm downloads][npm-downloads-src]][npm-downloads-href]
   [![License][license-src]][license-href]
 </div>
 <br />
+
+## About the project
+
+[Nuxt ChatGPT](https://nuxtchatgpt.com) is a project built to showcase the capabilities of the Nuxt3 ChatGPT module. It functions as a ChatGPT clone with enhanced features, including the ability to organize and sort created documents into folders, offering an improved user experience for managing conversations and outputs.
 
 ## About the module
 
@@ -293,7 +302,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Oliver Trajceski - [LinkedIn](https://mk.linkedin.com/in/oliver-trajceski-8a28b070) - oliver@akrinum.com
 
-Project Link: [https://vuemadness.com/vuehub/nuxt-chatgpt/](https://vuemadness.com/vuehub/nuxt-chatgpt/)
+Project Link: [https://nuxtchatgpt.com](https://nuxtchatgpt.com)
 
 ## Development
 
