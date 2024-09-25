@@ -26,7 +26,9 @@
     "nuxt3",
     "nuxt",
     "nuxt.js",
-    "nuxt-chatgpt"
+    "nuxt-chatgpt",
+    "image",
+    "image-generator"
   ],
   "exports": {
     ".": {
