@@ -72,6 +72,14 @@ export default defineNuxtModule<ModuleOptions>({
       }
     )
 
+    addServerHandler(
+      {
+        route: '/api/image-generate',
+        method: 'post',
+        handler: resolve(runtimeDir, 'server/api/image-generate'),
+      }
+    )
+
     nuxt.options.build.transpile.push(runtimeDir)
   }
 })

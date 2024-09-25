@@ -2,7 +2,7 @@
 <br />
 <div>
   <div>
-  <h1>Nuxt Chatgpt <a href="https://nuxtchatgpt.com" target="_blank">🔥(VIEW DEMO)🔥</a></h3>
+  <h1>Nuxt Chatgpt + Image Generator<a href="https://nuxtchatgpt.com" target="_blank">🔥(VIEW DEMO)🔥</a></h3>
   
   </div>
   <div style="display:flex; width:100%; justify-content:center">
@@ -29,7 +29,7 @@ This user-friendly module boasts of an easy integration process that enables sea
 
 - 💪 &nbsp; Easy implementation into any [Nuxt 3](https://nuxt.com) project.
 - 👉 &nbsp; Type-safe integration of Chatgpt into your [Nuxt 3](https://nuxt.com) project.
-- 🕹️ &nbsp; Provides a `useChatgpt()` composable that grants easy access to the `chat`, and `chatCompletion` methods.
+- 🕹️ &nbsp; Provides a `useChatgpt()` composable that grants easy access to the `chat`, and `chatCompletion`, and `generateImage` methods.
 - 🔥 &nbsp; Ensures security by routing requests through a [Nitro Server](https://nuxt.com/docs/guide/concepts/server-engine), preventing the <b>API Key</b> from being exposed.
 - 🧱 &nbsp; It is lightweight and performs well.
 
@@ -64,15 +64,24 @@ That's it! You can now use Nuxt Chatgpt in your Nuxt app 🔥
 
 ## Usage & Examples
 
-To access the `chat`, and `chatCompletion` methods in the nuxt-chatgpt module, you can use the `useChatgpt()` composable, which provides easy access to them. The `chat`, and `chatCompletion` methods requires three parameters:
+To access the `chat`, `chatCompletion`, and `generateImage` methods in the nuxt-chatgpt module, you can use the `useChatgpt()` composable, which provides easy access to them. 
 
+The `chat`, and `chatCompletion` methods requires three parameters:
 
 | Name | Type | Default | Description |
 |--|--|--|--|
 |**message**|`String`|available only for `chat()`|A string representing the text message that you want to send to the GPT model for processing.
 |**messages**|`Array`|available only for `chatCompletion()`|An array of objects that contains `role` and `content`
 |**model**|`String`|`gpt-4o-mini` for `chat()` and `gpt-4o-mini` for `chatCompletion()`|Represent certain model for different types of natural language processing tasks.
-|**options**|`Object`|`{ temperature: 0.5, max_tokens: 2048, top_p: 1 frequency_penalty: 0, presence_penalty: 0 }`|An optional object that specifies any additional options you want to pass to the API request, such as the number of responses to generate, and the maximum length of each response.
+|**options**|`Object`|`{ temperature: 0.5, max_tokens: 2048, top_p: 1 frequency_penalty: 0, presence_penalty: 0 }`|An optional object that specifies any additional options you want to pass to the API request, such as, the number of responses to generate, and the maximum length of each response.
+
+The `generateImage` method requires one parameters:
+
+| Name | Type | Default | Description |
+|--|--|--|--|
+|**message**|`String`| A text description of the desired image(s). The maximum length is 1000 characters.
+|**model**|`String`|`dall-e-2` or `dall-e-3`| The model to use for image generation. Only dall-e-2 is supported at this time.
+|**options**|`Object`|`{ n: 1, quality: 'standard', response_format: 'url', size: '1024x1024', style: 'natural' }`|An optional object that specifies any additional options you want to pass to the API request, such as, the number of images to generate, quality, size and style of the generated images.
 
 Available models:
 
@@ -91,6 +100,8 @@ Available models:
 - gpt-4-32k
 - gpt-4-32k-0314
 - gpt-4-32k-0613
+- dall-e-2
+- dall-e-3
 
 ### Simple `chat` usage 
 In the following example, the model is unspecified, and the gpt-4o-mini model will be used by default.
@@ -259,6 +270,90 @@ async function sendMessage() {
         <strong>{{ chat.role }} :</strong>
         <div>{{ chat.content }} </div>
       </div>
+    </div>
+  </div>
+</template>
+```
+
+### Simple `generateImage` usage 
+In the following example, the model is unspecified, and the dall-e-2 model will be used by default.
+
+```js
+const { generateImage } = useChatgpt()
+
+const images = ref([])
+const inputData = ref('')
+const loading = ref(false)
+
+async function sendPrompt() {
+  loading.value = true
+  try {
+    images.value = await generateImage(inputData.value)
+  } catch (error) {
+    alert(`Error: ${error}`)
+  }
+  loading.value = false
+}
+
+```
+
+```html
+<template>
+  <div>
+    <div v-if="!loading && !images.length">
+      <input v-model="inputData">
+      <button
+        @click="sendPrompt"
+        v-text="'Send Prompt'"
+      />
+    </div>
+    <div v-else-if="loading">Generating, please wait ...</div>
+    <div v-if="images && !loading" >
+      <img v-for="image in images" :key="image.url" :src="image.url" alt="generated-image"/>
+    </div>
+  </div>
+</template>
+```
+
+### Usage of `generateImage` with different model, and options
+
+```js
+const { generateImage } = useChatgpt()
+
+const images = ref([])
+const inputData = ref('')
+const loading = ref(false)
+
+async function sendPrompt() {
+  loading.value = true
+  try {
+    images.value = await generateImage(inputData.value, 'dall-e-2', {
+      n: 1,
+      quality: 'standard',
+      response_format: 'url',
+      size: '1024x1024',
+      style: 'natural'
+    })
+  } catch (error) {
+    alert(`Error: ${error}`)
+  }
+  loading.value = false
+}
+```
+
+```html
+<template>
+  <div>
+    <div v-if="!loading && !images.length">
+      <input v-model="inputData">
+      <button
+        @click="sendPrompt"
+        v-text="'Send Prompt'"
+      />
+    </div>
+    <div v-else-if="loading">Generating, please wait ...</div>
+    <div v-if="images && !loading" >
+      <img v-for="image in images" :key="image.url" :src="image.url" alt="generated-image"/>
     </div>
   </div>
 </template>

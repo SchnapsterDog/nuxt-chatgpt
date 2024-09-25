@@ -1,6 +1,24 @@
 
 # Changelog
 
+## v0.2.5
+
+[compare changes](https://github.com/schnapsterdog/nuxt-chatgpt/compare/v0.2.4...v0.2.5)
+
+### 🚀 Enhancements
+
+- Created generateImage feature through open ai dale models ([da104a2](https://github.com/schnapsterdog/nuxt-chatgpt/commit/da104a2))
+- Updated default map inside model-map ([6792040](https://github.com/schnapsterdog/nuxt-chatgpt/commit/6792040))
+- Updated keyworks in package.json file ([39d2806](https://github.com/schnapsterdog/nuxt-chatgpt/commit/39d2806))
+
+### 📖 Documentation
+
+- Updated Readme.md file ([cb94a9a](https://github.com/schnapsterdog/nuxt-chatgpt/commit/cb94a9a))
+
+### ❤️ Contributors
+
+- Schnapsterdog <olivertrajceski@yahoo.com>
+
 ## v0.2.4
 
 [compare changes](https://github.com/schnapsterdog/nuxt-chatgpt/compare/v0.2.3...v0.2.4)

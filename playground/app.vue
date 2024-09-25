@@ -14,6 +14,17 @@
         <div>{{ chat.content }} </div>
       </div>
     </div>
+    <!-- <div v-if="!loading && !images.length">
+      <input v-model="inputData">
+      <button
+        @click="sendPrompt"
+        v-text="'Send Prompt'"
+      />
+    </div>
+    <div v-else-if="loading">Generating, please wait ...</div>
+    <div v-if="images && !loading" >
+      <img v-for="image in images" :key="image.url" :src="image.url" alt="generated-image"/>
+    </div> -->
   </div>
 </template>
 
@@ -21,10 +32,12 @@
 import { useChatgpt } from "#imports"
 import { ref } from "vue"
 
-const { chatCompletion } = useChatgpt()
+const { chatCompletion, generateImage } = useChatgpt()
 
 const chatTree = ref([])
+const images = ref([])
 const inputData = ref('')
+const loading = ref(false)
 
 async function sendMessage() {
   try {
@@ -44,7 +57,17 @@ async function sendMessage() {
     
     chatTree.value.push(responseMessage)
   } catch(error) {
-    alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
+    alert(`Error: ${error}`)
   }
+}
+
+async function sendPrompt() {
+  loading.value = true
+  try {
+    images.value = await generateImage(inputData.value)
+  } catch (error) {
+    alert(`Error: ${error}`)
+  }
+  loading.value = false
 }
 </script>
