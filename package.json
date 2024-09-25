@@ -1,6 +1,6 @@
 {
   "name": "nuxt-chatgpt",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "ChatGPT integration for Nuxt 3",
   "license": "MIT",
   "type": "module",
@@ -49,7 +49,7 @@
     "dev:generate": "nuxi generate playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "dev:preview": "nuxi preview playground",
-    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release --minor && npm publish && git push --follow-tags",
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest watch"
