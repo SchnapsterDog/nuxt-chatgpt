@@ -5,3 +5,11 @@ export const defaultOptions = {
   frequency_penalty: 0,
   presence_penalty: 0
 }
+
+export const defaultDaleOptions = {
+  n: 1,
+  quality: 'standard',
+  response_format: 'url',
+  size: '1024x1024',
+  style: 'natural'
+}

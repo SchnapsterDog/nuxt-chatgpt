@@ -1,6 +1,7 @@
 export interface IChatgptClient {
   chat(IMessage): Promise,
   chatCompletion(IMessage): Promise
+  generateImage(IMessage): Promise
 }
 
 export interface IMessage {

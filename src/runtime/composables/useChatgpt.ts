@@ -41,5 +41,24 @@ export const useChatgpt = (): IChatgptClient => {
     }
   }
 
-  return { chat, chatCompletion }
+  const generateImage = async (message: IMessage, model?: IModel, options?: IOptions) => {
+
+    try {
+      return await $fetch('/api/image-generate', {
+        method: 'POST',
+        body: {
+          message,
+          model,
+          options
+        }
+      })
+    } catch (error) {
+      throw createError({
+        statusCode: 500,
+        message: 'Failed to forward request to server',
+      })
+    }
+  }
+
+  return { chat, chatCompletion, generateImage }
 }

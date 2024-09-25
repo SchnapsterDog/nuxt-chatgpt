@@ -13,7 +13,9 @@ import {
   MODEL_GPT_4_0613,
   MODEL_GPT_4_32k,
   MODEL_GPT_4_32k_0314,
-  MODEL_GPT_4_32k_0613
+  MODEL_GPT_4_32k_0613,
+  MODEL_GPT_DALL_E_2,
+  MODEL_GPT_DALL_E_3
 } from '../constants/models';
 
 export const modelMap = {
@@ -32,5 +34,7 @@ export const modelMap = {
   [MODEL_GPT_4_32k]: MODEL_GPT_4_32k,
   [MODEL_GPT_4_32k_0314]: MODEL_GPT_4_32k_0314,
   [MODEL_GPT_4_32k_0613]: MODEL_GPT_4_32k_0613,
+  [MODEL_GPT_DALL_E_2]: MODEL_GPT_DALL_E_2,
+  [MODEL_GPT_DALL_E_3]: MODEL_GPT_DALL_E_3,
   default: MODEL_GPT_TURBO_3_5
 }

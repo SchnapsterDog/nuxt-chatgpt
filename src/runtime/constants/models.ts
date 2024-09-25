@@ -13,3 +13,6 @@ export const MODEL_GPT_4_0613 = 'gpt-4-0613'
 export const MODEL_GPT_4_32k: string = 'gpt-4-32k'
 export const MODEL_GPT_4_32k_0314: string = 'gpt-4-32k-0314'
 export const MODEL_GPT_4_32k_0613 = "gpt-4-32k-0613"
+export const MODEL_GPT_DALL_E_2= "dall-e-2"
+export const MODEL_GPT_DALL_E_3 = "dall-e-3"
+
