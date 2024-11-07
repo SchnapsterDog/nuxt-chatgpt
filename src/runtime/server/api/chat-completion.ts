@@ -1,16 +1,18 @@
-import OpenAI from 'openai'
-import { createError, defineEventHandler, readBody } from "h3"
-import { defaultOptions } from "../../constants/options"
-import { MODEL_GPT_4_MINI } from '../../constants/models'
-import { modelMap } from "../../utils/model-map"
 import { useRuntimeConfig } from '#imports'
+import { createError, defineEventHandler, readBody } from "h3"
+import OpenAI from 'openai'
+import { MODEL_GPT_4_MINI } from '../../constants/models'
+import { defaultOptions } from "../../constants/options"
+import { modelMap } from "../../utils/model-map"
 
 export default defineEventHandler(async (event) => {
   // destructing the data that comes from the request
   const { messages, model, options } = await readBody(event)
 
+  const config = useRuntimeConfig()
+
   // throw an error if the apiKey is not set
-  if (!useRuntimeConfig().chatgpt.apiKey) {
+  if (!config.chatgpt.apiKey) {
     throw createError({
       statusCode: 403,
       message: 'Missing OpenAI API Key',
@@ -19,7 +21,8 @@ export default defineEventHandler(async (event) => {
 
   // set-up configuration object and apiKEY
   const openai = new OpenAI({
-    apiKey: useRuntimeConfig().chatgpt.apiKey
+    apiKey: config.chatgpt.apiKey,
+    baseURL: config.chatgpt.baseURL
   });
 
   /**

@@ -1,6 +1,6 @@
-import { fileURLToPath } from 'url'
-import { defineNuxtModule, addServerHandler, addImportsDir, createResolver } from '@nuxt/kit'
+import { addImportsDir, addServerHandler, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { defu } from 'defu'
+import { fileURLToPath } from 'url'
 import { configKey, moduleName, nuxtVersion } from './config'
 
 // Module options TypeScript inteface definition
@@ -11,6 +11,13 @@ export interface ModuleOptions {
    * @description Set your chatGPT apiKey
   */
   apiKey?: string
+
+  /**
+   * Set chatGPT baseUrl
+   * @default 'https://api.openai.com/v1'
+   * @description Set your chatGPT baseUrl
+  */
+  baseURL?: string
 
   /**
    * Setting to `false` disables the module.
@@ -47,9 +54,10 @@ export default defineNuxtModule<ModuleOptions>({
       return console.warn(`[${moduleName}] module is disabled and will not be loaded.`)
     }
 
-    // Add apiKey in runtimeConfig - user can override at runtime with NUXT_CHATGPT_API_KEY
+    // Add apiKey and baseURL in runtimeConfig - user can override at runtime with NUXT_CHATGPT_API_KEY
     nuxt.options.runtimeConfig[configKey] = defu(nuxt.options.runtimeConfig[configKey], {
       apiKey: options.apiKey,
+      baseURL: options.baseURL ?? 'https://api.openai.com/v1',
     })
 
     // Add composables
