@@ -1,6 +1,18 @@
 
 # Changelog
 
+## v0.2.6
+
+[compare changes](https://github.com/schnapsterdog/nuxt-chatgpt/compare/v0.2.5...v0.2.6)
+
+### 🚀 Enhancements
+
+- Add baseURL option and update npm deps. ([b559888](https://github.com/schnapsterdog/nuxt-chatgpt/commit/b559888))
+
+### ❤️ Contributors
+
+- Bit0r ([@Bit0r](http://github.com/Bit0r))
+
 ## v0.2.5
 
 [compare changes](https://github.com/schnapsterdog/nuxt-chatgpt/compare/v0.2.4...v0.2.5)
@@ -174,4 +186,3 @@
 ### ❤️  Contributors
 
 - SchnapsterDog <olivertrajceski@yahoo.com>
-

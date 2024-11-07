@@ -3,7 +3,7 @@
 <div>
   <div>
   <h1>Nuxt Chatgpt + Image Generator<a href="https://nuxtchatgpt.com" target="_blank">🔥(VIEW DEMO)🔥</a></h3>
-  
+
   </div>
   <div style="display:flex; width:100%; justify-content:center">
   <img src="images/logo.png" alt="Logo">
@@ -56,7 +56,8 @@ export default defineNuxtConfig({
 
   // entirely optional
   chatgpt: {
-    apiKey: 'Your apiKey here goes here'
+    apiKey: 'Your apiKey here goes here',
+    baseURL: 'Your baseURL here goes here',
   },
 })
 ```
@@ -64,7 +65,7 @@ That's it! You can now use Nuxt Chatgpt in your Nuxt app 🔥
 
 ## Usage & Examples
 
-To access the `chat`, `chatCompletion`, and `generateImage` methods in the nuxt-chatgpt module, you can use the `useChatgpt()` composable, which provides easy access to them. 
+To access the `chat`, `chatCompletion`, and `generateImage` methods in the nuxt-chatgpt module, you can use the `useChatgpt()` composable, which provides easy access to them.
 
 The `chat`, and `chatCompletion` methods requires three parameters:
 
@@ -103,7 +104,7 @@ Available models:
 - dall-e-2
 - dall-e-3
 
-### Simple `chat` usage 
+### Simple `chat` usage
 In the following example, the model is unspecified, and the gpt-4o-mini model will be used by default.
 
 ```js
@@ -168,7 +169,7 @@ async function sendMessage() {
 </template>
 ```
 
-### Simple `chatCompletion` usage 
+### Simple `chatCompletion` usage
 In the following example, the model is unspecified, and the gpt-4o-mini model will be used by default.
 
 ```js
@@ -187,12 +188,12 @@ async function sendMessage() {
     chatTree.value.push(message)
 
     const response = await chatCompletion(chatTree.value)
-    
+
     const responseMessage = {
       role: response[0].message.role,
       content: response[0].message.content
     }
-    
+
     chatTree.value.push(responseMessage)
   } catch(error) {
     alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
@@ -240,12 +241,12 @@ async function sendMessage() {
     chatTree.value.push(message)
 
     const response = await chatCompletion(chatTree.value, 'gpt-4o-mini')
-    
+
     const responseMessage = {
       role: response[0].message.role,
       content: response[0].message.content
     }
-    
+
     chatTree.value.push(responseMessage)
   } catch(error) {
     alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
@@ -275,7 +276,7 @@ async function sendMessage() {
 </template>
 ```
 
-### Simple `generateImage` usage 
+### Simple `generateImage` usage
 In the following example, the model is unspecified, and the dall-e-2 model will be used by default.
 
 ```js
@@ -371,6 +372,7 @@ The `chatCompletion` method is similar to the `chat` method, but it provides add
 | Name | Type | Default | Description |
 |--|--|--|--|
 |**apiKey**|`String`|`xxxxxx`|Your apiKey here goes here
+|**baseURL**|`String`|`https://api.openai.com/v1`|Your baseURL here goes here
 |**isEnabled**|`Boolean`|`true`| Enable or disable the module. `True` by default.
 
 <!-- CONTRIBUTING -->

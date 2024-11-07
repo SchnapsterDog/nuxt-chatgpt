@@ -1,25 +1,28 @@
-import OpenAI from 'openai'
-import { createError, defineEventHandler, readBody } from "h3"
-import { defaultDaleOptions } from "../../constants/options"
-import { MODEL_GPT_DALL_E_2 } from '../../constants/models'
-import { modelMap } from "../../utils/model-map"
 import { useRuntimeConfig } from '#imports'
+import { createError, defineEventHandler, readBody } from "h3"
+import OpenAI from 'openai'
+import { MODEL_GPT_DALL_E_2 } from '../../constants/models'
+import { defaultDaleOptions } from "../../constants/options"
+import { modelMap } from "../../utils/model-map"
 
 export default defineEventHandler(async (event) => {
   // destructing the data that comes from the request
   const { message, model, options } = await readBody(event)
 
+  const config = useRuntimeConfig()
+
   // throw an error if the apiKey is not set
-  if (!useRuntimeConfig().chatgpt.apiKey) {
+  if (!config.chatgpt.apiKey) {
     throw createError({
       statusCode: 403,
       message: 'Missing OpenAI API Key',
     })
   }
 
-  // set-up configuration object and apiKEY
+  // set-up configuration object and apiKEY - baseURL is optional
   const openai = new OpenAI({
-    apiKey: useRuntimeConfig().chatgpt.apiKey
+    apiKey: config.chatgpt.apiKey,
+    baseURL: config.chatgpt.baseURL
   });
 
   /**
