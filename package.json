@@ -1,6 +1,6 @@
 {
   "name": "nuxt-chatgpt",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "ChatGPT integration for Nuxt 3",
   "license": "MIT",
   "type": "module",
