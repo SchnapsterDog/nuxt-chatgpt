@@ -80,7 +80,7 @@ The `generateImage` method requires one parameters:
 | Name | Type | Default | Description |
 |--|--|--|--|
 |**message**|`String`| A text description of the desired image(s). The maximum length is 1000 characters.
-|**model**|`String`|`dall-e-2` or `dall-e-3`| The model to use for image generation. Only dall-e-2 is supported at this time.
+|**model**|`String`|`dall-e-3`| The model to use for image generation. Only dall-e-3 is supported at this time.
 |**options**|`Object`|`{ n: 1, quality: 'standard', response_format: 'url', size: '1024x1024', style: 'natural' }`|An optional object that specifies any additional options you want to pass to the API request, such as, the number of images to generate, quality, size and style of the generated images.
 
 Available models:
@@ -100,7 +100,6 @@ Available models:
 - gpt-4-32k
 - gpt-4-32k-0314
 - gpt-4-32k-0613
-- dall-e-2
 - dall-e-3
 
 ### Simple `chat` usage 
@@ -276,7 +275,7 @@ async function sendMessage() {
 ```
 
 ### Simple `generateImage` usage 
-In the following example, the model is unspecified, and the dall-e-2 model will be used by default.
+In the following example, the model is unspecified, and the dall-e-3 model will be used by default.
 
 ```js
 const { generateImage } = useChatgpt()
@@ -327,7 +326,7 @@ const loading = ref(false)
 async function sendPrompt() {
   loading.value = true
   try {
-    images.value = await generateImage(inputData.value, 'dall-e-2', {
+    images.value = await generateImage(inputData.value, 'dall-e-3', {
       n: 1,
       quality: 'standard',
       response_format: 'url',
