@@ -38,10 +38,10 @@ export default defineEventHandler(async (event) => {
   try {
     const chatCompletion = await openai.chat.completions.create(requestOptions)
     return chatCompletion.choices
-  } catch (error) {
+  } catch (error: any) {
     throw createError({
       statusCode: 500,
-      message: 'Failed to forward request to OpenAI API',
+      message: error
     })
   }
 })

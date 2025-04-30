@@ -38,10 +38,10 @@ export default defineEventHandler(async (event) => {
   try {
     const response = await openai.images.generate(requestOptions)
     return response.data
-  } catch (error) {
+  } catch (error: any) {
     throw createError({
       statusCode: 500,
-      message: 'Failed to forward request to OpenAI API',
+      message: error
     })
   }
 })
