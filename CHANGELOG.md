@@ -1,6 +1,27 @@
 
 # Changelog
 
+## v0.2.7
+
+[compare changes](https://github.com/schnapsterdog/nuxt-chatgpt/compare/v0.2.6...v0.2.7)
+
+## v0.2.6
+
+[compare changes](https://github.com/schnapsterdog/nuxt-chatgpt/compare/v0.2.5...v0.2.6)
+
+### 🚀 Enhancements
+
+- Handle error messages inside chat, chatCompletion and imageGenerate endpoints ([ad7411a](https://github.com/schnapsterdog/nuxt-chatgpt/commit/ad7411a))
+- Updated openai library to 4.96.2, removed dall-e-2 model, make dall-e-3 model default for image generator ([d054dfe](https://github.com/schnapsterdog/nuxt-chatgpt/commit/d054dfe))
+
+### 📖 Documentation
+
+- Updated Readme.md file ([d3c8cb1](https://github.com/schnapsterdog/nuxt-chatgpt/commit/d3c8cb1))
+
+### ❤️ Contributors
+
+- Schnapsterdog <olivertrajceski@yahoo.com>
+
 ## v0.2.5
 
 [compare changes](https://github.com/schnapsterdog/nuxt-chatgpt/compare/v0.2.4...v0.2.5)

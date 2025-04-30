@@ -1,6 +1,6 @@
 {
   "name": "nuxt-chatgpt",
-  "version": "0.2.5",
+  "version": "0.2.7",
   "description": "ChatGPT integration for Nuxt 3",
   "license": "MIT",
   "type": "module",
@@ -57,7 +57,7 @@
   "dependencies": {
     "@nuxt/kit": "latest",
     "defu": "latest",
-    "openai": "4.0.0"
+    "openai": "^4.96.2"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "latest",
