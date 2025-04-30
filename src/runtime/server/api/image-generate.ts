@@ -1,7 +1,7 @@
 import OpenAI from 'openai'
 import { createError, defineEventHandler, readBody } from "h3"
 import { defaultDaleOptions } from "../../constants/options"
-import { MODEL_GPT_DALL_E_2 } from '../../constants/models'
+import { MODEL_GPT_DALL_E_3 } from '../../constants/models'
 import { modelMap } from "../../utils/model-map"
 import { useRuntimeConfig } from '#imports'
 
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
   */
   const requestOptions = {
     prompt: message,
-    model: !model ? modelMap[MODEL_GPT_DALL_E_2] : modelMap[model],
+    model: !model ? modelMap[MODEL_GPT_DALL_E_3] : modelMap[model],
     ...(options || defaultDaleOptions)
   }
 

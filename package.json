@@ -57,7 +57,7 @@
   "dependencies": {
     "@nuxt/kit": "latest",
     "defu": "latest",
-    "openai": "4.0.0"
+    "openai": "^4.96.2"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "latest",
