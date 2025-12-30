@@ -2,7 +2,8 @@
 <br />
 <div>
   <div>
-  <h1>Nuxt Chatgpt + Image Generator<a href="https://nuxtchatgpt.com" target="_blank">🔥(VIEW DEMO)🔥</a></h3>
+  <h1>Hausly + Image Generator<a href="https://hausly.io" target="_blank">🔥(IMAGE DEMO)🔥</a></h2></h1>
+  <h2>Nuxt Chatgpt + Image Generator<a href="https://nuxtchatgpt.com" target="_blank">🔥(CHATGPT DEMO)🔥</a></h2>
   
   </div>
   <div style="display:flex; width:100%; justify-content:center">
@@ -32,6 +33,12 @@ This user-friendly module boasts of an easy integration process that enables sea
 - 🕹️ &nbsp; Provides a `useChatgpt()` composable that grants easy access to the `chat`, and `chatCompletion`, and `generateImage` methods.
 - 🔥 &nbsp; Ensures security by routing requests through a [Nitro Server](https://nuxt.com/docs/guide/concepts/server-engine), preventing the <b>API Key</b> from being exposed.
 - 🧱 &nbsp; It is lightweight and performs well.
+
+
+## Recommended Node Version
+
+### min `v18.20.5 or higher`
+### recommended `v20.19.0`
 
 ## Getting Started
 
@@ -72,7 +79,7 @@ The `chat`, and `chatCompletion` methods requires three parameters:
 |--|--|--|--|
 |**message**|`String`|available only for `chat()`|A string representing the text message that you want to send to the GPT model for processing.
 |**messages**|`Array`|available only for `chatCompletion()`|An array of objects that contains `role` and `content`
-|**model**|`String`|`gpt-4o-mini` for `chat()` and `gpt-4o-mini` for `chatCompletion()`|Represent certain model for different types of natural language processing tasks.
+|**model**|`String`|`gpt-5-mini` for `chat()` and `gpt-5-mini` for `chatCompletion()`|Represent certain model for different types of natural language processing tasks.
 |**options**|`Object`|`{ temperature: 0.5, max_tokens: 2048, top_p: 1 frequency_penalty: 0, presence_penalty: 0 }`|An optional object that specifies any additional options you want to pass to the API request, such as, the number of responses to generate, and the maximum length of each response.
 
 The `generateImage` method requires one parameters:
@@ -80,7 +87,7 @@ The `generateImage` method requires one parameters:
 | Name | Type | Default | Description |
 |--|--|--|--|
 |**message**|`String`| A text description of the desired image(s). The maximum length is 1000 characters.
-|**model**|`String`|`dall-e-3`| The model to use for image generation. Only dall-e-3 is supported at this time.
+|**model**|`String`|`gpt-image-1-mini`| The model to use for image generation.
 |**options**|`Object`|`{ n: 1, quality: 'standard', response_format: 'url', size: '1024x1024', style: 'natural' }`|An optional object that specifies any additional options you want to pass to the API request, such as, the number of images to generate, quality, size and style of the generated images.
 
 Available models:
@@ -100,7 +107,16 @@ Available models:
 - gpt-4-32k
 - gpt-4-32k-0314
 - gpt-4-32k-0613
+- gpt-5-nano
+- gpt-5-mini
+- gpt-5-pro
+- gpt-5.1
+- gpt-5.2-pro
+- gpt-5.2
 - dall-e-3
+- gpt-image-1
+- gpt-image-1-mini
+- gpt-image-1.5
 
 ### Simple `chat` usage 
 In the following example, the model is unspecified, and the gpt-4o-mini model will be used by default.
@@ -116,7 +132,7 @@ async function sendMessage() {
     const response = await chat(inputData.value)
     data.value = response
   } catch(error) {
-    alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
+    alert(`Verify your organization if you want to use GPT-5 models: ${error}`)
   }
 }
 
@@ -145,10 +161,10 @@ const inputData = ref('')
 
 async function sendMessage() {
   try {
-    const response = await chat(inputData.value, 'gpt-4o-mini')
+    const response = await chat(inputData.value, 'gpt-5-mini')
     data.value = response
   } catch(error) {
-    alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
+    alert(`Verify your organization if you want to use GPT-5 models: ${error}`)
   }
 }
 
@@ -194,7 +210,7 @@ async function sendMessage() {
     
     chatTree.value.push(responseMessage)
   } catch(error) {
-    alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
+    alert(`Verify your organization if you want to use GPT-5 models: ${error}`)
   }
 }
 
@@ -238,7 +254,7 @@ async function sendMessage() {
 
     chatTree.value.push(message)
 
-    const response = await chatCompletion(chatTree.value, 'gpt-4o-mini')
+    const response = await chatCompletion(chatTree.value, 'gpt-5-mini')
     
     const responseMessage = {
       role: response[0].message.role,
@@ -247,7 +263,7 @@ async function sendMessage() {
     
     chatTree.value.push(responseMessage)
   } catch(error) {
-    alert(`Join the waiting list if you want to use GPT-4 models: ${error}`)
+    alert(`Verify your organization if you want to use GPT-5 models: ${error}`)
   }
 }
 
@@ -275,7 +291,7 @@ async function sendMessage() {
 ```
 
 ### Simple `generateImage` usage 
-In the following example, the model is unspecified, and the dall-e-3 model will be used by default.
+In the following example, the model is unspecified, and the `gpt-image-1-mini` model will be used by default.
 
 ```js
 const { generateImage } = useChatgpt()
@@ -284,14 +300,23 @@ const images = ref([])
 const inputData = ref('')
 const loading = ref(false)
 
+function b64ToBlobUrl(b64) {
+  const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+  const blob = new Blob([bytes], { type: "image/png" });
+  return URL.createObjectURL(blob);
+}
+
 async function sendPrompt() {
-  loading.value = true
+  loading.value = true;
   try {
-    images.value = await generateImage(inputData.value)
+    const result = await generateImage(inputData.value);
+    images.value = result.map((img) => ({
+      url: b64ToBlobUrl(img.b64_json),
+    }));
   } catch (error) {
-    alert(`Error: ${error}`)
+    alert(`Error: ${error}`);
   }
-  loading.value = false
+  loading.value = false;
 }
 
 ```

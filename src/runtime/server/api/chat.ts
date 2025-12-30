@@ -1,7 +1,7 @@
 import OpenAI from 'openai'
 import { createError, defineEventHandler, readBody } from "h3"
 import { defaultOptions } from "../../constants/options"
-import { MODEL_GPT_4_MINI } from '../../constants/models'
+import { MODEL_GPT_5_MINI } from '../../constants/models'
 import { modelMap } from "../../utils/model-map"
 import { useRuntimeConfig } from '#imports'
 
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
   */
   const requestOptions = {
     messages: [{ role: 'user', content: message }],
-    model: !model ? modelMap[MODEL_GPT_4_MINI] : modelMap[model],
+    model: !model ? modelMap[MODEL_GPT_5_MINI] : modelMap[model],
     ...(options || defaultOptions)
   }
 
