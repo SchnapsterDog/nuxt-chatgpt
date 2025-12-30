@@ -12,6 +12,14 @@ export const MODEL_GPT_4_0314: string = 'gpt-4-0314'
 export const MODEL_GPT_4_0613 = 'gpt-4-0613'
 export const MODEL_GPT_4_32k: string = 'gpt-4-32k'
 export const MODEL_GPT_4_32k_0314: string = 'gpt-4-32k-0314'
-export const MODEL_GPT_4_32k_0613 = "gpt-4-32k-0613"
-export const MODEL_GPT_DALL_E_3 = "dall-e-3"
-
+export const MODEL_GPT_4_32k_0613 = 'gpt-4-32k-0613'
+export const MODEL_GPT_5_NANO = 'gpt-5-nano';
+export const MODEL_GPT_5_MINI = 'gpt-5-mini';
+export const MODEL_GPT_5_PRO = 'gpt-5-pro';
+export const MODEL_GPT_5_1 = 'gpt-5.1';
+export const MODEL_GPT_5_2_PRO = 'gpt-5.2-pro';
+export const MODEL_GPT_5_2 = 'gpt-5.2';
+export const MODEL_GPT_DALL_E_3 = 'dall-e-3';
+export const MODEL_GPT_IMAGE_1 = 'gpt-image-1';
+export const MODEL_GPT_IMAGE_1_MINI = 'gpt-image-1-mini';
+export const MODEL_GPT_IMAGE_1_5 = 'gpt-image-1.5';
