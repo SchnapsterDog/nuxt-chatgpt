@@ -2,6 +2,7 @@
   <div>
     <input v-model="inputData" />
     <button @click="sendMessage" v-text="'Send'" />
+    <button @click="sendStreamedMessage" v-text="'Send Streamed'" />
     <div>
       <div
         v-for="chat in chatTree"
@@ -11,7 +12,7 @@
         <div>{{ chat.content }} </div>
       </div>
     </div>
-    <!-- <div v-if="!loading && !images.length">
+    <div v-if="!loading && !images.length">
       <input v-model="inputData" />
       <button @click="sendPrompt" v-text="'Generate Image'" />
     </div>
@@ -23,7 +24,7 @@
         :src="image.url"
         alt="generated-image"
       />
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -31,7 +32,7 @@
 import { useChatgpt } from "#imports";
 import { ref } from "vue";
 
-const { chatCompletion, generateImage } = useChatgpt();
+const { chatCompletion, chatCompletionStream,generateImage } = useChatgpt();
 
 const chatTree = ref([]);
 const images = ref([]);
@@ -61,6 +62,45 @@ async function sendMessage() {
     };
 
     chatTree.value.push(responseMessage);
+  } catch (error) {
+    alert(`Error: ${error}`);
+  }
+}
+
+async function sendStreamedMessage() {
+  try {
+    const userMessage = {
+      role: "user",
+      content: `${inputData.value}`,
+    };
+
+    chatTree.value.push(userMessage);
+
+    // Push an empty assistant message that we will append tokens to
+    const assistantMessage = {
+      role: "assistant",
+      content: "",
+    };
+    chatTree.value.push(assistantMessage);
+
+    await chatCompletionStream(
+      chatTree.value,
+      undefined,
+      undefined,
+      {
+        onToken(token) {
+          assistantMessage.content += token;
+        },
+        onDone() {
+          // optional: finalize UI state
+        },
+        onError(err) {
+          alert(`Stream error: ${typeof err === "string" ? err : err?.message || "Unknown"}`);
+        },
+      }
+    );
+
+    inputData.value = "";
   } catch (error) {
     alert(`Error: ${error}`);
   }

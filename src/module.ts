@@ -74,6 +74,14 @@ export default defineNuxtModule<ModuleOptions>({
 
     addServerHandler(
       {
+        route: '/api/chat-completion-stream',
+        method: 'post',
+        handler: resolve(runtimeDir, 'server/api/chat-completion-stream'),
+      }
+    )
+
+    addServerHandler(
+      {
         route: '/api/image-generate',
         method: 'post',
         handler: resolve(runtimeDir, 'server/api/image-generate'),
