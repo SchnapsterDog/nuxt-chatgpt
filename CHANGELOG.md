@@ -1,6 +1,22 @@
 
 # Changelog
 
+## v0.4.0
+
+[compare changes](https://github.com/schnapsterdog/nuxt-chatgpt/compare/v0.3.0...v0.4.0)
+
+### 🚀 Enhancements
+
+- Added stream way of caling the open-ai api ([02e2f39](https://github.com/schnapsterdog/nuxt-chatgpt/commit/02e2f39))
+
+### 📖 Documentation
+
+- Updated Readme.md file ([014a7f5](https://github.com/schnapsterdog/nuxt-chatgpt/commit/014a7f5))
+
+### ❤️ Contributors
+
+- Schnapsterdog <olivertrajceski@yahoo.com>
+
 ## v0.3.0
 
 

@@ -32,9 +32,9 @@ This user-friendly module boasts of an easy integration process that enables sea
 - 💪 &nbsp; Easy implementation into any [Nuxt 3](https://nuxt.com) project.
 - 👉 &nbsp; Type-safe integration of Chatgpt into your [Nuxt 3](https://nuxt.com) project.
 - 🕹️ &nbsp; Provides a `useChatgpt()` composable that grants easy access to the `chat`, and `chatCompletion`, and `generateImage` methods.
+- 🕹️ &nbsp; Provides `chatCompletionStream` for real-time streamed responses (SSE).
 - 🔥 &nbsp; Ensures security by routing requests through a [Nitro Server](https://nuxt.com/docs/guide/concepts/server-engine), preventing the <b>API Key</b> from being exposed.
 - 🧱 &nbsp; It is lightweight and performs well.
-
 
 ## Recommended Node Version
 
@@ -63,54 +63,56 @@ That's it! You can now use Nuxt Chatgpt in your Nuxt app 🔥
 
 ## Usage & Examples
 
-To access the `chat`, `chatCompletion`, and `generateImage` methods in the nuxt-chatgpt module, you can use the `useChatgpt()` composable, which provides easy access to them. 
+To access the `chat`, `chatCompletion`, `chatCompletionStream`, and `generateImage` methods in the nuxt-chatgpt module, you can use the `useChatgpt()` composable, which provides easy access to them.
 
 The `chat`, and `chatCompletion` methods requires three parameters:
 
-| Name | Type | Default | Description |
-|--|--|--|--|
-|**message**|`String`|available only for `chat()`|A string representing the text message that you want to send to the GPT model for processing.
-|**messages**|`Array`|available only for `chatCompletion()`|An array of objects that contains `role` and `content`
-|**model**|`String`|`gpt-5-mini` for `chat()` and `gpt-5-mini` for `chatCompletion()`|Represent certain model for different types of natural language processing tasks.
-|**options**|`Object`|`{ temperature: 0.5, max_tokens: 2048, top_p: 1 frequency_penalty: 0, presence_penalty: 0 }`|An optional object that specifies any additional options you want to pass to the API request, such as, the number of responses to generate, and the maximum length of each response.
+| Name         | Type     | Default                                                                                      | Description                                                                                                                                                                          |
+| ------------ | -------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **message**  | `String` | available only for `chat()`                                                                  | A string representing the text message that you want to send to the GPT model for processing.                                                                                        |
+| **messages** | `Array`  | available only for `chatCompletion()` and `chatCompletionStream()`                           | An array of objects that contains `role` and `content`                                                                                                                               |
+| **model**    | `String` | `gpt-5-mini` for `chat()` and `gpt-5-mini` for `chatCompletion()`                            | Represent certain model for different types of natural language processing tasks.                                                                                                    |
+| **options**  | `Object` | `{ temperature: 0.5, max_tokens: 2048, top_p: 1 frequency_penalty: 0, presence_penalty: 0 }` | An optional object that specifies any additional options you want to pass to the API request, such as, the number of responses to generate, and the maximum length of each response. |
 
 The `generateImage` method requires one parameters:
 
-| Name | Type | Default | Description |
-|--|--|--|--|
-|**message**|`String`| A text description of the desired image(s). The maximum length is 1000 characters.
-|**model**|`String`|`gpt-image-1-mini`| The model to use for image generation.
-|**options**|`Object`|`{ n: 1, quality: 'standard', response_format: 'url', size: '1024x1024', style: 'natural' }`|An optional object that specifies any additional options you want to pass to the API request, such as, the number of images to generate, quality, size and style of the generated images.
+| Name        | Type     | Default                                                                                      | Description                                                                                                                                                                               |
+| ----------- | -------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **message** | `String` | A text description of the desired image(s). The maximum length is 1000 characters.           |                                                                                                                                                                                           |
+| **model**   | `String` | `gpt-image-1-mini`                                                                           | The model to use for image generation.                                                                                                                                                    |
+| **options** | `Object` | `{ n: 1, quality: 'standard', response_format: 'url', size: '1024x1024', style: 'natural' }` | An optional object that specifies any additional options you want to pass to the API request, such as, the number of images to generate, quality, size and style of the generated images. |
 
 Available models:
 
-- text-davinci-002
-- text-davinci-003
-- gpt-3.5-turbo
-- gpt-3.5-turbo-0301
-- gpt-3.5-turbo-1106
-- gpt-4
-- gpt-4o
-- gpt-4o-mini
-- gpt-4-turbo
-- gpt-4-1106-preview
-- gpt-4-0314
-- gpt-4-0613
-- gpt-4-32k
-- gpt-4-32k-0314
-- gpt-4-32k-0613
-- gpt-5-nano
-- gpt-5-mini
-- gpt-5-pro
-- gpt-5.1
-- gpt-5.2-pro
-- gpt-5.2
-- dall-e-3
-- gpt-image-1
-- gpt-image-1-mini
-- gpt-image-1.5
+* text-davinci-002
+* text-davinci-003
+* gpt-3.5-turbo
+* gpt-3.5-turbo-0301
+* gpt-3.5-turbo-1106
+* gpt-4
+* gpt-4o
+* gpt-4o-mini
+* gpt-4-turbo
+* gpt-4-1106-preview
+* gpt-4-0314
+* gpt-4-0314
+* gpt-4-0613
+* gpt-4-32k
+* gpt-4-32k-0314
+* gpt-4-32k-0613
+* gpt-5-nano
+* gpt-5-mini
+* gpt-5-pro
+* gpt-5.1
+* gpt-5.2-pro
+* gpt-5.2
+* dall-e-3
+* gpt-image-1
+* gpt-image-1-mini
+* gpt-image-1.5
 
-### Simple `chat` usage 
+### Simple `chat` usage
+
 In the following example, the model is unspecified, and the gpt-4o-mini model will be used by default.
 
 ```js
@@ -175,7 +177,8 @@ async function sendMessage() {
 </template>
 ```
 
-### Simple `chatCompletion` usage 
+### Simple `chatCompletion` usage
+
 In the following example, the model is unspecified, and the gpt-4o-mini model will be used by default.
 
 ```js
@@ -282,7 +285,76 @@ async function sendMessage() {
 </template>
 ```
 
-### Simple `generateImage` usage 
+### Simple `chatCompletionStream` usage (streaming)
+
+In the following example, the model is unspecified, and the gpt-4o-mini model will be used by default.
+
+```js
+const { chatCompletionStream } = useChatgpt()
+
+const chatTree = ref([])
+const inputData = ref('')
+
+async function sendStreamedMessage() {
+  try {
+    const message = {
+      role: 'user',
+      content: `${inputData.value}`,
+    }
+
+    chatTree.value.push(message)
+
+    const assistantMessage = {
+      role: 'assistant',
+      content: ''
+    }
+
+    chatTree.value.push(assistantMessage)
+
+    // IMPORTANT: do not send the placeholder assistant message to the server
+    const payloadMessages = chatTree.value.slice(0, -1)
+
+    await chatCompletionStream(payloadMessages, undefined, undefined, {
+      onToken(token) {
+        assistantMessage.content += token
+      },
+      onDone() {
+        // streaming finished
+      },
+      onError(err) {
+        alert(`Stream error: ${typeof err === "string" ? err : err?.message || "Unknown"}`)
+      }
+    })
+  } catch(error) {
+    alert(`Verify your organization if you want to use GPT-5 models: ${error}`)
+  }
+}
+
+```
+
+```html
+<template>
+  <div>
+    <input v-model="inputData">
+    <button
+      @click="sendStreamedMessage"
+      v-text="'Send Streamed'"
+    />
+    <div>
+      <div
+        v-for="chat in chatTree"
+        :key="chat"
+      >
+        <strong>{{ chat.role }} :</strong>
+        <div>{{ chat.content }} </div>
+      </div>
+    </div>
+  </div>
+</template>
+```
+
+### Simple `generateImage` usage
+
 In the following example, the model is unspecified, and the `gpt-image-1-mini` model will be used by default.
 
 ```js
@@ -381,15 +453,19 @@ The `chat` method allows the user to send a prompt to the OpenAI API and receive
 
 The `chatCompletion` method is similar to the `chat` method, but it provides additional functionality for generating longer, more complex responses. Specifically, the chatCompletion method allows you to provide a conversation history as input, which the API can use to generate a response that is consistent with the context of the conversation. This makes it possible to build chatbots that can engage in longer, more natural conversations with users.
 
+## chatCompletionStream vs chatCompletion
+
+The `chatCompletionStream` method returns the assistant response **as a stream** (token-by-token). This is useful when you want to build a ChatGPT-like UI where the answer is displayed while it's being generated, instead of waiting for the full message.
 
 ## Module Options
 
-| Name | Type | Default | Description |
-|--|--|--|--|
-|**apiKey**|`String`|`xxxxxx`|Your apiKey here goes here
-|**isEnabled**|`Boolean`|`true`| Enable or disable the module. `True` by default.
+| Name          | Type      | Default  | Description                                      |
+| ------------- | --------- | -------- | ------------------------------------------------ |
+| **apiKey**    | `String`  | `xxxxxx` | Your apiKey here goes here                       |
+| **isEnabled** | `Boolean` | `true`   | Enable or disable the module. `True` by default. |
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -403,16 +479,17 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
+
 ## Contact
 
-Oliver Trajceski - [LinkedIn](https://mk.linkedin.com/in/oliver-trajceski-8a28b070) - oliver@akrinum.com
+Oliver Trajceski - [LinkedIn](https://mk.linkedin.com/in/oliver-trajceski-8a28b070) - [oliver@akrinum.com](mailto:oliver@akrinum.com)
 
 Project Link: [https://nuxtchatgpt.com](https://nuxtchatgpt.com)
 
