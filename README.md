@@ -2,8 +2,9 @@
 <br />
 <div>
   <div>
-  <h1>Hausly + Image Generator<a href="https://hausly.io" target="_blank">🔥(IMAGE DEMO)🔥</a></h2></h1>
-  <h2>Nuxt Chatgpt + Image Generator<a href="https://nuxtchatgpt.com" target="_blank">🔥(CHATGPT DEMO)🔥</a></h2>
+  <h1>Hausly + Image Generator<a href="https://hausly.io" target="_blank">🔥(Hausly)🔥</a></h1>
+  <h2>ReplyGuard + Generate Email Reply<a href="https://replyguard.ai" target="_blank">🔥(ReplyGuard)🔥</a></h2>
+  <h2>Nuxt Chatgpt + Image Generator<a href="https://nuxtchatgpt.com" target="_blank">🔥(Nuxt ChatGPT)🔥</a></h2>
   
   </div>
   <div style="display:flex; width:100%; justify-content:center">
